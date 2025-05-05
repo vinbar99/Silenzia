@@ -1,0 +1,207 @@
+:root {
+  --colore-primario: #2563eb;
+  --colore-primario-scuro: #1d4ed8;
+  --sfondo-app: #f0f5ff;
+  --sfondo-card: #ffffff;
+  --testo-base: #1e293b;
+  --testo-secondario: #64748b;
+  --bordo: #e2e8f0;
+  --errore: #991b1b;
+  --sfondo-errore: #fee2e2;
+  --successo: #166534;
+  --sfondo-successo: #dcfce7;
+
+  /* Fix per Safari mobile */
+  --raggio-bordi: 12px;
+  --ombra-base: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  --transizione: all 0.2s ease;
+}
+
+/* Reset base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* TODO: Aggiungere dark mode */
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif; /* fallback system-ui per Windows */
+  background: var(--sfondo-app);
+  color: var(--testo-base);
+  display: flex; 
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Layout principale */
+.container {
+  width: 100%;
+  max-width: 1200px; /* FIXME: valutare 1140px per bootstrap */
+  margin: 0 auto;
+  padding: 1rem;
+  flex: 1;
+}
+
+/* Header e Nav */
+header {
+  background-color: var(--colore-primario);
+  color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+/* Hack per evitare che i contenuti carichino prima dello style su Chrome */
+.logo {
+  height: 140px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: var(--transizione);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Form e input */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 500;
+  color: var(--testo-secondario);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--bordo);
+  border-radius: var(--raggio-bordi);
+  font: inherit;
+  transition: var(--transizione);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--colore-primario);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Bottoni e CTA */
+button, .btn {
+  background-color: var(--colore-primario) !important;
+  color: white !important;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--raggio-bordi);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transizione);
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--colore-primario-scuro) !important;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Cards e liste */
+.card {
+  background: var(--sfondo-card);
+  padding: 1.5rem;
+  border-radius: var(--raggio-bordi);
+  box-shadow: var(--ombra-base);
+  margin-bottom: 1rem;
+}
+
+/* Grid responsiva prenotazioni */
+#listaPrenotazioni {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Alert e feedback */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--raggio-bordi);
+  text-align: center;
+}
+
+.alert-success {
+  background-color: var(--sfondo-successo);
+  color: var(--successo);
+}
+
+.alert-error {
+  background-color: var(--sfondo-errore);
+  color: var(--errore);
+}
+
+/* Responsive - mobile first */
+@media (max-width: 768px) {
+  nav, .actions {
+    flex-direction: column;
+  }
+
+  .header-content {
+    flex-direction: column;
+  }
+
+  /* Fix spaziatura mobile */
+  .container {
+    padding: 1rem;
+  }
+}
+
+/* Utilities */
+.text-muted { color: var(--testo-secondario); }
+.text-center { text-align: center; }
+
+/* Auth */
+.auth-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--sfondo-card);
+  border-radius: var(--raggio-bordi);
+  box-shadow: var(--ombra-base);
+}
+
+/* Logout */
+.logout-btn {
+  margin-left: auto;
+  background-color: #ef4444;
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: var(--raggio-bordi);
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+  text-decoration: none !important;
+}

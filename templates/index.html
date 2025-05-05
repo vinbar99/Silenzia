@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <!-- Fix mobile zoom bug su iOS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Silenzia - Prenota la tua sessione</title>
+  <!-- TODO: Aggiungere font locali per offline -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- TODO: Sistemare header mobile -->
+  <header>
+    <div class="header-content container text-center">
+      <img src="/static/img/logo.png" alt="Logo Silenzia" class="logo img-fluid">
+    </div>
+  </header>
+  
+  <!-- FIXME: Aggiungere animazione transizione -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid justify-content-center">
+      <a class="nav-link mx-2" href="/">Home</a>
+      <a class="nav-link mx-2" href="/prenota">Prenotazioni</a>
+      <a class="nav-link mx-2" href="/info">Info</a>
+      <a class="nav-link mx-2" href="/contatti">Contatti</a>
+      <a href="/logout" class="nav-link logout-btn ms-2">Esci</a>
+    </div>
+  </nav>
+  
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Prenota la tua cabina</h2>
+
+    <!-- Form prenotazione -->
+    <form id="formPrenotazione" class="needs-validation mx-auto" style="max-width: 800px;" novalidate>
+      <input type="hidden" id="editId" value="" />
+
+      <div class="row g-3 g-md-4 mb-3 mb-md-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" required placeholder="Es: Mario" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="cognome" class="form-label">Cognome</label>
+            <input type="text" class="form-control" id="cognome" required placeholder="Es: Rossi" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <!-- validazione email-->
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" 
+                   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+                   required placeholder="Es: mario.rossi@email.it" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="persone" class="form-label">Numero persone</label>
+            <select class="form-select" id="persone" required>
+              <option value="">Seleziona...</option>
+              <option value="1">1 persona</option>
+              <option value="2">2 persone</option>
+              <option value="3">3 persone</option>
+              <option value="4">4 persone (max)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gestione date/orari -->
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="data" class="form-label">Data</label>
+            <input type="date" class="form-control" id="data" required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ora" class="form-label">Orario</label>
+            <select class="form-select" id="ora" required>
+              <!-- orari standard -->
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00 (ultimo)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" id="submitBtn" class="btn cta-button">Prenota ora</button>
+      </div>
+    </form>
+
+    <!-- Box messaggi feedback -->
+    <div id="successMessage" class="alert alert-success mt-4" style="display: none;"></div>
+
+    <!-- Lista prenotazioni utente -->
+    <h3 id="titoloPrenotazioni" class="mt-5 mb-4" style="display: none;">Le tue prenotazioni</h3>
+    <div id="listaPrenotazioni" class="row g-4"></div>
+  </div>
+
+  <footer class="py-3 mt-5">
+    <p class="text-center mb-0">&copy; 2025 Silenzia. Tutti i diritti riservati.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/script.js"></script>
+</body>
+</html>

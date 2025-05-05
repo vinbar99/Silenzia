@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <!-- Fix iOS zoom bug -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Silenzia - Contattaci</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- Header con logo -->
+  <header>
+    <div class="header-content container text-center">
+      <img src="/static/img/logo.png" alt="Logo Silenzia" class="logo img-fluid">
+    </div>
+  </header>
+
+  <!-- Menu nav -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid justify-content-center">
+      <a class="nav-link mx-2" href="/">Home</a>
+      <a class="nav-link mx-2" href="/prenota">Prenotazioni</a>
+      <a class="nav-link mx-2" href="/info">Info</a>
+      <a class="nav-link mx-2" href="/contatti">Contatti</a>
+    </div>
+  </nav>
+  
+  <!-- Contenuto principale -->
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Come contattarci</h2>
+    
+    <div class="card p-4">
+      <!-- Info generali -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <h3 class="h5 mb-3">Assistenza prenotazioni</h3>
+          <p class="mb-2">📱 Tel: <a href="tel:+390212345678">02 1234 5678</a></p>
+          <p class="mb-2">📧 Email: <a href="mailto:prenotazioni@silenzia.it">prenotazioni@silenzia.it</a></p>
+          <p class="mb-0">⏰ Lun-Ven 9:00-18:00</p>
+        </div>
+        <div class="col-md-6">
+          <h3 class="h5 mb-3">Sede operativa</h3>
+          <p class="mb-2">📍 Via del Silenzio, 10</p>
+          <p class="mb-2">20100 Milano (MI)</p>
+          <p class="mb-0">🏢 Edificio B, Piano 3</p>
+        </div>
+      </div>
+
+      <!-- Form contatto -->
+      <div class="mt-4">
+        <h3 class="h5 mb-3">Scrivici un messaggio</h3>
+        <form id="formContatto" class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nomeContatto" class="form-label">Nome e Cognome*</label>
+              <input type="text" class="form-control" id="nomeContatto" required>
+            </div>
+            <div class="col-md-6">
+              <label for="emailContatto" class="form-label">Email*</label>
+              <input type="email" class="form-control" id="emailContatto" required>
+            </div>
+            <!-- TODO: Aggiungere validazione dei campi e persistenza dati dell'inoltro delle richieste oppure farle inviare tramite mail !-->
+            <div class="col-12">
+              <label for="oggettoContatto" class="form-label">Oggetto*</label>
+              <select class="form-select" id="oggettoContatto" required>
+                <option value="">Seleziona...</option>
+                <option value="info">Informazioni generali</option>
+                <option value="prenotazione">Problemi con prenotazione</option>
+                <option value="tecnico">Assistenza tecnica</option>
+                <option value="business">Proposta commerciale</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="messaggioContatto" class="form-label">Messaggio*</label>
+              <textarea class="form-control" id="messaggioContatto" rows="4" required></textarea>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                <label class="form-check-label" for="privacyCheck">
+                  Accetto il trattamento dei dati personali
+                </label>
+              </div>
+            </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn cta-button">Invia messaggio</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <div class="text-center mt-4">
+      <h3 class="h5 mb-3">Seguici sui social</h3>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#" class="btn btn-outline-primary">Instagram</a>
+        <a href="#" class="btn btn-outline-primary">Facebook</a>
+        <a href="#" class="btn btn-outline-primary">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-3 mt-5">
+    <p class="text-center mb-0">&copy; 2025 Silenzia. Tutti i diritti riservati.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- TODO: Aggiungere validazione form -->
+  <script>
+    document.getElementById('formContatto')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Grazie per averci contattato! Ti risponderemo entro 24 ore.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
